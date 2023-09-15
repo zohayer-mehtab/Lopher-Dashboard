@@ -1,6 +1,6 @@
 import React from "react";
-import Menubar from "../components/Menubar";
-import ProductTable from "../components/ProductTable";
+import { Menubar } from "../components/Menubar";
+import { ProductTable } from "../components/ProductTable";
 
 export function Products() {
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { AddSize } from "../components/AddSize";
 import { Menubar } from "../components/Menubar";
 import { SubmitBtn } from "../components/SubmitBtn";
@@ -6,16 +6,10 @@ import banana from "../assets/images/banana.jpg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { getAuth } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
-import { AuthContext } from "../Context/AuthContext";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 export function AddProduct() {
-  const { auth } = useContext(AuthContext);
-  const db = getFirestore();
-  const storage = getStorage();
-
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageGallery, setImageGallery] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -31,7 +25,7 @@ export function AddProduct() {
   });
 
   const uploadImages = async () => {
-    const storageRef = storage.ref();
+    const storageRef = firebase.storage().ref();
     const imageUrls = [];
 
     for (const imageFile of selectedImages) {
@@ -61,13 +55,16 @@ export function AddProduct() {
     try {
       await uploadImages();
 
-      // Use 'auth' for authentication and 'db' for Firestore
-      const userId = auth.currentUser.uid;
+      const db = firebase.firestore();
+      const userId = firebase.auth().currentUser.uid;
 
-      const userFormsRef = collection(db, "users", userId, "forms");
+      const userFormsRef = db
+        .collection("users")
+        .doc(userId)
+        .collection("forms");
       const formWithImages = { ...formData, images: imageUrls };
 
-      await addDoc(userFormsRef, formWithImages);
+      await userFormsRef.add(formWithImages);
 
       // Clear the form and selected images
       setFormData({

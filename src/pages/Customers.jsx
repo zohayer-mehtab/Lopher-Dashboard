@@ -1,5 +1,5 @@
 import React from "react";
-import Menubar from "../components/Menubar";
+import { Menubar } from "../components/Menubar";
 
 export function Customers() {
   return (
@@ -9,7 +9,8 @@ export function Customers() {
           <Menubar />
           <div className="h-4/5 w-4/5 bg-white mt-10 rounded-lg">
             <p className="font-bold text-4xl ml-2.5">
-              Apatoto Eddur Porjonto Oiyi. Bye Bye Garibo!!!
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis
+              provident, nesciunt accusamus eaque error tempore repellendus
             </p>
           </div>
         </div>

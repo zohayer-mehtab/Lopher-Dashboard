@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Bar = ({ name, sourceUrl, imgUrl }) => {
+export function Bar({ name, sourceUrl, imgUrl }) {
   return (
     <Link to={sourceUrl}>
       <button className="my-3 mx-2.5 px-4 py-2 w-36 rounded-md active:bg-white flex focus:shadow-sm items-center">
@@ -14,6 +14,4 @@ const Bar = ({ name, sourceUrl, imgUrl }) => {
       </button>
     </Link>
   );
-};
-
-export default Bar;
+}

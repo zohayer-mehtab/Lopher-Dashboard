@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProductTable = () => {
+export function ProductTable() {
   return (
     <>
       <div className="mt-5">
@@ -203,6 +203,4 @@ const ProductTable = () => {
       </div>
     </>
   );
-};
-
-export default ProductTable;
+}

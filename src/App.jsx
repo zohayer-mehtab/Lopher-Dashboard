@@ -9,6 +9,7 @@ import { SignUp } from "./pages/SignUp";
 import { Protected } from "./pages/Protected";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { AuthContext } from "./Context/AuthContext";
+import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   const router = createBrowserRouter([
@@ -79,9 +80,11 @@ function App() {
   ]);
   return (
     <>
-      <AuthContext>
-        <RouterProvider router={router}></RouterProvider>
-      </AuthContext>
+      <ErrorBoundary>
+        <AuthContext>
+          <RouterProvider router={router}></RouterProvider>
+        </AuthContext>
+      </ErrorBoundary>
 
       {/* <Routes>
         <Route path="/" element={<Home />} />

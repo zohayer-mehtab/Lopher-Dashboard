@@ -19,6 +19,7 @@ export function AuthContext({ children }) {
     });
     return () => {
       if (unsubscribe) unsubscribe();
+      console.log();
     };
   }, []);
   const values = {
